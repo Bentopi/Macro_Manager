@@ -63,9 +63,9 @@ class MacroParser
       when params[:weight_rate] == "0"
         p_low += 0.035
         f_low += 0.075
-      when params[:weight_rate] == "0.5"
-        p_low -= 0.05
-        f_low += 0.15
+      when params[:weight_rate] == "0.65"
+        p_low += 0.01
+        f_low += 0.1
     end
 
     if params[:workout_count] && params[:workout_count].to_i == 0

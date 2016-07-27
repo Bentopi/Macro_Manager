@@ -9,9 +9,18 @@
   </head>
 
   <body>
-    <div class="row header-main">
-        <h1 class="text-center">
-          <strong>DO THE MACROS!</strong></h1>
+    <div class="row header-main text-center">
+      <div class="row">
+        <div class="col-xs-4">
+          <%= link_to "Calculator", root_path %>
+        </div>
+        <div class="col-xs-4">
+          <%= link_to "Food Search", food_list_path %>
+        </div>
+        <div class="col-xs-4">
+          <%= link_to "Meal Planner", meal_plan_path %>
+        </div>
+      </div>
     </div>
 
     <div class="container">

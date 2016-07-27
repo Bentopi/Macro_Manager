@@ -12,8 +12,10 @@ $mainColor: #3498db;
 }
 
 .header-main {
-  color: #ecf0f1;
-  font-size: 2.5em;
+  a {
+    color: #ecf0f1;
+    font-size: 2.5em;
+  }
   background-color: #337AB7;
   padding-bottom: 7px;
   margin-bottom: 20px;

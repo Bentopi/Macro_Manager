@@ -1,20 +1,22 @@
 $mainColor: #3498db;
+$whitetextColor: #ecf0f1;
+$blacktextColor: #555;
 
-.guest-macro-form, .guest-macro-box {
-  font-size: 2em;
-  line-height: 150%;
+.guest-macro-form, .guest-macro-box, .login-form {
+  font-size: 1.3em;
+  line-height: 130%;
 }
 .huge-text {
-  font-size: 2em;
+  font-size: 1.4em;
 }
 .alert {
-  font-size: 2em;
+  font-size: 1.4em;
 }
 
 .header-main {
   a {
     color: #ecf0f1;
-    font-size: 2.5em;
+    font-size: 1.5em;
   }
   background-color: #337AB7;
   padding-bottom: 7px;
@@ -22,17 +24,27 @@ $mainColor: #3498db;
 }
 
 .macro-footer {
+  color: $whitetextColor;
   position: fixed;
   bottom: 20px;
   right: 0px;
   left: 0px;
-  font-size: 3.5em;
+  font-size: 1.5em;
   background-color: $mainColor;
   padding: 10px;
   padding-bottom: 20px;
 }
 body {
   font-family: "Helvetica", "Arial", sans-serif;
-  color: #555;
+  color: $blacktextColor;
   background-color: #34495e;
+}
+.intro-text {
+  color: $whitetextColor;
+}
+.btn-spacer {
+  margin-left: 10px;
+}
+.form-divider {
+  border: 1px solid $blacktextColor;
 }

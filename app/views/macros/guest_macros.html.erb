@@ -74,7 +74,7 @@
                       <div class="col-xs-6">
                           <div class="form-group">
                               <%= label_tag :workout_count, "Days per week" %>
-                              <div class="col-xs-offset-3 col-xs-5">
+                              <div class="col-xs-offset-3 col-xs-6">
                                 <%= select_tag :workout_count, options_for_select((0..7).step(1), selected = params[:workout_count]), class: "form-control" %>
                               </div>
                           </div>

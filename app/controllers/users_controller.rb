@@ -20,4 +20,8 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def profile
+    @user = User.find_by id: params[:id]
+  end
 end

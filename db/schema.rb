@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727203011) do
+ActiveRecord::Schema.define(version: 20160731175906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,11 +20,20 @@ ActiveRecord::Schema.define(version: 20160727203011) do
     t.string   "username"
     t.string   "gender"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "height"
     t.integer  "weight"
-    t.date     "dob"
+    t.integer  "age"
+    t.float    "weight_rate"
+    t.integer  "workout_count"
+    t.float    "workout_intensity"
+    t.string   "workout_type"
+    t.integer  "calories"
+    t.integer  "protein"
+    t.integer  "carbs"
+    t.integer  "fat"
+    t.integer  "notch",             default: 0
   end
 
 end

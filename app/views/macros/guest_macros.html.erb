@@ -37,15 +37,10 @@
                     <div class="row">
                         <div class="col-xs-4">
                             <div class="form-group">
-                                <%= label_tag :height_ft, "Height ft." %>
-                                <%= select_tag :height_ft, options_for_select((4..7).step(1), selected = params[:height_ft]), class: "form-control" %>
-                            </div>
-                        </div>
-
-                        <div class="col-xs-3">
-                            <div class="form-group">
-                                <%= label_tag :height_in, "in." %>
-                                <%= select_tag :height_in, options_for_select((0..11).step(1), selected = params[:height_in]), class: "form-control" %>
+                                <%= label_tag :height, "Height" %>
+                                <%= select_tag   :height, options_for_select((54..84).to_a
+                                .map { |inch| { id: inch.to_s, name: (inch/12).floor.to_s+'\''+(inch%12).to_s+'"'}}
+                                .collect{ |p| [p[:name], p[:id].to_i]}, selected = params[:height]), { class:'form-control' } %>
                             </div>
                         </div>
                     </div>
@@ -74,7 +69,7 @@
                       <div class="col-xs-6">
                           <div class="form-group">
                               <%= label_tag :workout_count, "Days per week" %>
-                              <div class="col-xs-offset-3 col-xs-6">
+                              <div class="col-xs-9">
                                 <%= select_tag :workout_count, options_for_select((0..7).step(1), selected = params[:workout_count]), class: "form-control" %>
                               </div>
                           </div>
@@ -99,16 +94,16 @@
                     <strong>Exercise Type</strong>
                     <div class="row">
                         <div class="col-xs-4">
-                            <%= radio_button_tag(:training_type, "L", true, :checked => (params[:training_type] == "L"), class: "radio-inline") %>
-                            <%= label_tag(:training_type, "Lifting")%>
+                            <%= radio_button_tag(:workout_type, "L", true, :checked => (params[:workout_type] == "L"), class: "radio-inline") %>
+                            <%= label_tag(:workout_type, "Lifting")%>
                         </div>
                         <div class="col-xs-4">
-                            <%= radio_button_tag(:training_type, "C", false, :checked => (params[:training_type] == "C"), class: "radio-inline") %>
-                            <%= label_tag(:training_type, "Cardio") %>
+                            <%= radio_button_tag(:workout_type, "C", false, :checked => (params[:workout_type] == "C"), class: "radio-inline") %>
+                            <%= label_tag(:workout_type, "Cardio") %>
                         </div>
                         <div class="col-xs-4">
-                            <%= radio_button_tag(:training_type, "M", false, :checked => (params[:training_type] == "M"), class: "radio-inline") %>
-                            <%= label_tag(:training_type, "Mixed") %>
+                            <%= radio_button_tag(:workout_type, "M", false, :checked => (params[:workout_type] == "M"), class: "radio-inline") %>
+                            <%= label_tag(:workout_type, "Mixed") %>
                         </div>
                     </div>
                 </div>
@@ -139,13 +134,6 @@
                 <%= @fat %>
                 gr
               </strong>
-                <br>
-                <br>
-              <%= link_to meal_plan_path do %>
-              <div class="btn btn-lg btn-success btn-block">
-                Make a meal plan!
-              </div>
-              <% end %>
             </div>
         </div>
     </div>

@@ -1,34 +1,17 @@
 <div class="container">
+      Username:
+      <%= @user.username %> <br>
+      Email:
+      <%= @user.email %> <br>
+      Gender:
+      <%= @user.gender %> <br>
+      Age:
+      <%= @user.age %> years. <br>
+      Height:
+      <%= @user.height_formatted %> <br>
+      Weight:
+      <%= @user.weight %> lbs. <br>
+      <br>
+      <%= link_to "EDIT", edit_profile_path, class: "btn, btn-lg btn-primary" %>
 
-<% if @user.errors.any? %>
-  <div class="alert alert-danger" role="alert">
-    <% @user.errors.full_messages.each do |msg| %>
-     <%= msg %> <br>
-     <% end %>
-  </div>
-<% end %>
-
-
-  <div class="well well-lg login-form">
-    <%= form_for @user, url: create_user_path do |f| %>
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.text_field :email, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label "Retype Password" %>
-        <%= f.password_field :password_confirmation, class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.submit class:"btn btn-lg btn-block btn-primary" %>
-      </div>
-      <% end %>
-    </div>
 </div>

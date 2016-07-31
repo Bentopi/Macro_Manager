@@ -15,7 +15,7 @@ class MealplanController < ApplicationController
 
     p = ActiveSupport::HashWithIndifferentAccess.new session[:macroparser_params]
 
-    macroparser = MacroParser.new(p)
+    macroparser = GuestMacroParser.new(p)
     macroparser.parse!
 
     @fat = macroparser.fat

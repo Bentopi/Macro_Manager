@@ -2,34 +2,40 @@ class MacroParser
 
   attr_reader :params, :calories, :protein, :carbs, :fat
 
-  def initialize(params)
-    @params = params
+  def initialize(user_id)
+    @user = User.find_by id: user_id
+    @age = @user.age
+    @gender = @user.gender
+    @height = @user.height
+    @weight = @user.weight
+    @weight_rate = @user.weight_rate
+    @workout_count = @user.workout_count
+    @workout_type = @user.workout_type
+    @workout_intensity = @user.workout_intensity
+    @notch = @user.notch
+
   end
 
   def parse!
 
-    bmr, age, tdee_coef = 0, 0, 0
+    bmr, tdee_coef = 0, 0
 
-    if params[:height_in] && params[:height_ft]
-      height = (params[:height_ft].to_f * 12) + params[:height_in].to_f
+    if @gender == "M"
+      bmr = (66 + (6.2 * @weight) + (12.7 * @height) - (6.76 * @age)).to_f
+    elsif @gender == "F"
+      bmr = (655.1 + (4.35 * @weight) + (4.7 * @height) - (4.7 * @age)).to_f
     end
 
-    if params[:gender] == "M"
-      bmr = (66 + (6.2 * params[:weight].to_f) + (12.7 * height) - (6.76 * params[:age].to_f)).to_i
-    elsif params[:gender] == "F"
-      bmr = (655.1 + (4.35 * params[:weight].to_f) + (4.7 * height) - (4.7 * params[:age].to_f)).to_i
+    if @workout_count && @workout_intensity
+      tdee_coef = ((@workout_count * @workout_intensity).to_f + 1.2) + (@notch/2)
     end
 
-    if params[:workout_count] && params[:workout_intensity]
-      tdee_coef = (params[:workout_count].to_f * params[:workout_intensity].to_f) + 1.2
-    end
+    tdee = (bmr * tdee_coef)
 
-    tdee = (bmr * tdee_coef).to_i
+    @calories = (tdee + ((@weight_rate * 3500)/7))
 
-    @calories = (tdee + ((params[:weight_rate].to_f * 3500)/7)).to_i
-
-    if params[:age]
-      age = params[:age].to_i
+    if @age
+      age = @age
     end
 
     case
@@ -51,44 +57,42 @@ class MacroParser
       end
 
     case
-      when params[:weight_rate] == "-1.5"
-        p_low += 0.25
-        f_low -= 0.1
-      when params[:weight_rate] == "-1"
-        p_low += 0.1725
-        f_low -= 0.05
-      when params[:weight_rate] == "-0.5"
-        p_low += 0.1
-        f_low += 0
-      when params[:weight_rate] == "0"
-        p_low += 0.035
-        f_low += 0.075
-      when params[:weight_rate] == "0.65"
-        p_low += 0.01
-        f_low += 0.1
+    when @weight_rate == -1.5
+      p_high += 0.02
+      f_high -= 0.18
+    when @weight_rate == -1
+      p_high -= 0.06
+      f_high -= 0.14
+    when @weight_rate == -0.5
+      p_high -= 0.12
+      f_high -= 0.1
+    when @weight_rate == 0
+      p_high -= 0.15
+      f_high -= 0.06
+    when @weight_rate == 0.65
+      p_high -= 0.21
+      f_high -= 0.02
     end
 
-    if params[:workout_count] && params[:workout_count].to_i == 0
-      p_low -= 0.2
-      f_low += 0.025
+    if @workout_count && @workout_count == 0
+      p_high -= 0.3
     end
 
-    if params[:workout_count] && params[:workout_count].to_i > 0
+    if @workout_count && @workout_count > 0
       case
-        when params[:training_type] == "L"
-          p_low += 0.1
-        when params[:training_type] == "C"
-          p_low -= 0.2
-          f_low -= 0.03
-        when params[:training_type] == "M"
-          p_low += 0.05
-          f_low -= 0.02
+        when @workout_type == "L"
+          p_high += 0.03
+        when @workout_type == "C"
+          p_high -= 0.2
+          f_high -= 0.02
+        when @workout_type == "M"
+          f_high -= 0.02
       end
     end
 
-    @protein = (params[:weight].to_f * (p_high - ((p_high - p_low)/2) * (params[:rate].to_f + 1.5))).to_i
+    @protein = ((@weight * p_high)  -  ((p_high - p_low)/2) * (@weight_rate + 1.5)).to_i
 
-    @fat = (params[:weight].to_f * (f_high - ((f_high - f_low)/2) * (params[:rate].to_f + 1.5))).to_i
+    @fat = ((@weight * f_high)  -  ((f_high - f_low)/2) * (@weight_rate + 1.5)).to_i
 
     @carbs = ((@calories - ((@protein * 4) + (@fat * 9)))/4).to_i
 

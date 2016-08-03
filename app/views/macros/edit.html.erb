@@ -1,0 +1,77 @@
+<div class="container">
+  <%= form_for @user, url:edit_macros_path do |f| %>
+
+  <div class="well well-lg login-form">
+    <div class="form-inline text-center">
+      <div class="row">
+        <div class="col-xs-12">
+          <h3><%= f.label :weight_rate, "Weight Goal" %></h3>
+          <%= f.select :weight_rate, options_for_select([
+            ["Maintain Weight" , 0], ["Lose 1.5 lbs every week" , -1.5],
+            ["Lose 1 lb every week" , -1], ["Lose 0.5 lbs every week" , -0.5],
+            ["Gain 0.5 lbs every week", 0.65]], selected = @user.weight_rate), {}, {class: "form-control"} %>
+        </div>
+      </div>
+    </div>
+
+    <hr class="form-divider">
+
+    <div class="form-group">
+        <div class="row text-center">
+            <h3>Workout Scheme</h3>
+        </div>
+
+
+        <div class="row text-center">
+          <div class="col-xs-12">
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <%= f.label :workout_count, "Days per week" %>
+                </div>
+                <div class="col-xs-offset-4 col-xs-4">
+                  <%= f.select :workout_count, options_for_select((0..7).step(1), selected = @user.workout_count), {}, { class:'form-control' } %>
+                </div>
+              </div>
+          </div>
+
+          <div class="col-xs-12">
+              <div class="form-group">
+                  <%= f.label :workout_intensity, "How Intense" %>
+                  <div class="col-xs-12">
+                    <%= f.select :workout_intensity, options_for_select([
+                      ["Quick & Easy!" , 0.015], ["Some Effort Required." , 0.0325],
+                      ["Tough, But I Can Push Through!" , 0.05], ["I Might Die Today..." , 0.0875],
+                      ["Hard Workouts Twice a Day", 0.12]], selected = @user.workout_intensity), {}, { class:'form-control' } %>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="form-group text-center">
+        <strong>Exercise Type</strong>
+        <div class="row">
+            <div class="col-xs-4">
+                <%= f.radio_button(:workout_type, "L", :checked => (true unless @user.workout_type != "L"), class: "radio-inline") %>
+                <%= f.label(:workout_type, "Lifting")%>
+            </div>
+            <div class="col-xs-4">
+              <%= f.radio_button(:workout_type, "C", :checked => (true unless @user.workout_type != "C"), class: "radio-inline") %>
+                <%= f.label(:workout_type, "Cardio") %>
+            </div>
+            <div class="col-xs-4">
+              <%= f.radio_button(:workout_type, "M", :checked => (true unless @user.workout_type != "M"), class: "radio-inline") %>
+                <%= f.label(:workout_type, "Mixed") %>
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <div class="form-group">
+        <%= f.submit "Calculate Macros!", class:'btn btn-primary btn-lg btn-block' %>
+    </div>
+    <% end %>
+  </div>
+</div>

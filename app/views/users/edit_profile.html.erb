@@ -1,0 +1,64 @@
+<div class="container">
+
+<% if @user.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <% @user.errors.full_messages.each do |msg| %>
+     <%= msg %> <br>
+     <% end %>
+  </div>
+<% end %>
+
+
+  <div class="well well-lg login-form">
+    <%= form_for @user, url:edit_profile_path do |f| %>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-5">
+                <%= f.radio_button(:gender, "M", :checked => (true unless @user.gender != "M"), class: "radio-inline") %>
+                <%= f.label(:gender, "Male") %>
+            </div>
+            <div class="col-xs-5">
+                <%= f.radio_button(:gender, "F", :checked => (true if @user.gender == "F") , class: "radio-inline") %>
+                <%= f.label(:gender, "Female") %>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-inline">
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <%= f.label :age %>
+                    <%= f.number_field :age, class: "form-control"%>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <%= f.label "Weight lbs" %>
+                    <%= f.text_field :weight, :step => 0.1, class: "form-control" %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="form-group">
+                    <%= f.label :height, "Height" %>
+                    <%= f.select :height, options_for_select((54..84).to_a
+                    .map { |inch| { id: inch.to_s, name: (inch/12).floor.to_s+'\''+(inch%12).to_s+'"'}}
+                    .collect{ |p| [p[:name], p[:id].to_i] }, selected = @user.height), {}, { class:'form-control' } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <%= f.submit class:"btn btn-lg btn-primary" %>
+    </div>
+
+      <% end %>
+    </div>
+
+</div>

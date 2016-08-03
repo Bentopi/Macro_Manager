@@ -15,8 +15,8 @@ class SessionsController < ApplicationController
   end
 
 
-  def delete
-    reset_session
-    redirect_to root_path, notice: "Signed out!"
+  def destroy
+    session.delete :user_id
+    redirect_to root_path, notice: "Signed Out!"
   end
 end

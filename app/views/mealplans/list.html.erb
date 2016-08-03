@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="text-center">
+    <% @mealplans.each do |mealplan| %>
+    <h3><%= link_to mealplan.name, mealplan_path(id: mealplan.id) %>
+      <%= link_to "Delete", delete_mealplan_path(mealplan.id), method: :delete %> <br>
+    </h3>
+      <% end %>
+  </div>
+
+  <br>
+
+  <div class="text-center">
+    <%= link_to new_mealplan_path do %>
+      <div class="btn btn-lg btn-primary">
+        New Mealplan
+      </div>
+      <% end %>
+  </div>
+</div>

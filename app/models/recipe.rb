@@ -4,7 +4,6 @@ class Recipe < ActiveRecord::Base
 
   def kcals
     recipeparts.map {|r| r.kcals}.sum
-    # recipeparts.map(&:kcals).sum
   end
 
   def proteins

@@ -2,6 +2,9 @@ class Mealplan < ActiveRecord::Base
   belongs_to :user
   has_many :meals
 
+
+  ## Must refactor this code ##
+
   def kcals
     meal_ids = meals.pluck(:recipe_id)
     recipes = Recipe.where id: meal_ids

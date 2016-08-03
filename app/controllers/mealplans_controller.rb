@@ -15,7 +15,17 @@ class MealplansController < ApplicationController
   end
 
   def new
+    mealplan_number = @current_user.mealplans.size + 1
     @mealplan = Mealplan.new
+    @mealplan.user_id = @current_user.id
+    @mealplan.name = "Day #{mealplan_number}"
+
+    if @mealplan.save
+      redirect_to edit_mealplan_path(id: @mealplan.id)
+    else
+      flash[:notice] = "Something went wrong"
+      render :list
+    end
   end
 
   def show
@@ -43,8 +53,6 @@ class MealplansController < ApplicationController
     if @new_meal.save
       redirect_to edit_mealplan_path, notice: "Great! Add Another Meal"
     else
-      puts @new_meal.errors.full_messages
-      puts params
       flash[:notice] = "Something went wrong"
       render :edit
     end
@@ -54,6 +62,58 @@ class MealplansController < ApplicationController
     @meal = Meal.find_by id: params[:meal_id]
     @meal.destroy
     redirect_to edit_mealplan_path(params[:id]), notice: "Meal Deleted"
+  end
+
+  def generate
+    @mealplan = Mealplan.find_by id: params[:id]
+    breakfast_kcals = @current_user.calories * 0.25
+    lunch_kcals = @current_user.calories * 0.4
+    dinner_kcals = @current_user.calories * 0.35
+
+
+    breakfast_quantity = 1
+    breakfast_select = (Recipe.where category: "Breakfast").sample
+    breakfast_choice = breakfast_select
+
+    lunch_quantity = 1
+    lunch_select = (Recipe.where category: "Lunch").sample
+    lunch_choice = lunch_select
+
+    dinner_quantity = 1
+    dinner_select = (Recipe.where category: "Dinner").sample
+    dinner_choice = dinner_select
+
+    snacks_quantity = 1
+    snacks_select = (Recipe.where category: "Snacks").sample
+    snacks_choice = snacks_select
+
+    while breakfast_kcals >= (breakfast_select.kcals * breakfast_quantity)
+      breakfast_quantity +=1
+    end
+    breakfast = Meal.create! mealplan_id: @mealplan.id, recipe_id: breakfast_select.id, quantity: (breakfast_quantity - 1)
+    breakfast_remaining = breakfast_kcals - breakfast.kcals
+
+    while lunch_kcals >= (lunch_select.kcals * lunch_quantity)
+      lunch_quantity +=1
+    end
+      lunch = Meal.create! mealplan_id: @mealplan.id, recipe_id: lunch_select.id, quantity: (lunch_quantity - 1)
+      lunch_remaining = lunch_kcals - lunch.kcals
+
+    while dinner_kcals >= (dinner_select.kcals * dinner_quantity)
+      dinner_quantity +=1
+    end
+    dinner = Meal.create! mealplan_id: @mealplan.id, recipe_id: dinner_select.id, quantity: (dinner_quantity - 1)
+    dinner_remaining = dinner_kcals - dinner.kcals
+
+    snacks_kcals = (@current_user.calories * 0.05) + breakfast_remaining + lunch_remaining + dinner_remaining
+    while snacks_kcals >= (snacks_select.kcals * snacks_quantity)
+      snacks_quantity +=1
+    end
+    snacks = Meal.create! mealplan_id: @mealplan.id, recipe_id: snacks_select.id, quantity: (snacks_quantity - 1)
+
+    flash[:notice] = "BOOM!!!"
+    redirect_to edit_mealplan_path(id: @mealplan.id)
+
   end
 
 end

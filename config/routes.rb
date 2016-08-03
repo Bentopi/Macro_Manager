@@ -15,13 +15,17 @@ Rails.application.routes.draw do
   patch 'macros/down' => 'macros#notch_down', as: :notch_down
 
 
+  patch 'mealplans/generate/:id' => 'mealplans#generate', as: :generate_mealplan
   get 'mealplans' => 'mealplans#list', as: :mealplans
   get 'mealplans/new' => 'mealplans#new', as: :new_mealplan
   get 'mealplans/:id' => 'mealplans#show', as: :mealplan
+
+
   get 'mealplans/edit/:id' => 'mealplans#edit', as: :edit_mealplan
   delete 'mealplans/:id' => 'mealplans#delete_mealplan', as: :delete_mealplan
   patch 'mealplans/edit/:id' => 'mealplans#add_meal', as: :add_meal
   delete 'mealplans/:id/meals/:meal_id' => 'mealplans#delete_meal', as: :delete_meal
+
 
 
   get 'foodsearch' => 'food#list', as: :food_list

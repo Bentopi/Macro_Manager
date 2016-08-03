@@ -1,26 +1,36 @@
 <div class="container">
 
-    <div class="text-center">
+    <div class="row">
 
-        <% @current_user.meals.each do |meal|%>
-          <strong><%= meal.recipe.name %> x <%= meal.quantity %><br></strong>
-          <%= meal.recipe.kcals * meal.quantity %>kcal <br>
-          <%= meal.recipe.proteins * meal.quantity %>g Protein <br>
-          <%= meal.recipe.carbs * meal.quantity %>g Carbs <br>
-          <%= meal.recipe.fats * meal.quantity %>g Fat
-            <br>
-            <br>
-        <% end %>
+      <% @mealplan.meals.each do |meal|%>
+        <div class="col-xs-12">
+            <strong><%= meal.recipe.name %> x <%= meal.quantity %><br></strong>
+            <%= meal.recipe.kcals * meal.quantity %>kcal <br>
+            <%= meal.recipe.proteins * meal.quantity %>g Protein <br>
+            <%= meal.recipe.carbs * meal.quantity %>g Carbs <br>
+            <%= meal.recipe.fats * meal.quantity %>g Fat
+              <br>
+              <br>
+        </div>
+      <% end %>
+    </div>
 
-        <%= link_to edit_mealplan_path(id: @mealplan.id) do %>
-        <div class="btn btn-warning">
+  <div class="row">
+    <div class="col-xs-4">
+      <%= link_to edit_mealplan_path(id: @mealplan.id) do %>
+        <div class="btn btn-block btn-warning">
           Edit
         </div>
-        <% end %>
+      <% end %>
     </div>
+  </div>
+
+
 
 
 </div>
+
+
 
 <div class="macro-footer text-center">
   <div class="row text-center">

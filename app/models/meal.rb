@@ -3,7 +3,9 @@ class Meal < ActiveRecord::Base
   has_many :recipes
 
   def kcals
-    recipes.map {|r| r.kcals}.sum
+   recipe_id = self.recipe_id
+   recipe = Recipe.where id: recipe_id
+   recipe.first.kcals * quantity
   end
 
   def proteins

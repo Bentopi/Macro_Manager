@@ -10,30 +10,73 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731175906) do
+ActiveRecord::Schema.define(version: 20160802200949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ingredients", force: :cascade do |t|
+    t.integer  "serving_amount"
+    t.string   "serving_name"
+    t.integer  "calories"
+    t.integer  "protein"
+    t.integer  "fat"
+    t.integer  "carbs"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "name"
+  end
+
+  create_table "mealplans", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.integer  "mealplan_id"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "quantity"
+    t.integer  "recipe_id"
+  end
+
+  create_table "recipeparts", force: :cascade do |t|
+    t.integer  "ingredient_id"
+    t.integer  "amount"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "recipe_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string   "category"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "username"
     t.string   "gender"
     t.string   "password_digest"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "height"
-    t.integer  "weight"
+    t.float    "weight"
     t.integer  "age"
     t.float    "weight_rate"
     t.integer  "workout_count"
     t.float    "workout_intensity"
-    t.string   "workout_type"
+    t.string   "workout_type",      default: "L"
     t.integer  "calories"
     t.integer  "protein"
     t.integer  "carbs"
     t.integer  "fat"
-    t.integer  "notch",             default: 0
+    t.float    "notch",             default: 0.0
   end
 
 end

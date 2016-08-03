@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user.gender = "M"
     if @user.save
       session[:user_id] = @user.id
-      redirect_to edit_profile_path, notice: "You're almost done! We need your stats"
+      redirect_to edit_profile_path, notice: "You're almost done! We need some more info though."
     else
       render :new
     end
@@ -33,10 +33,19 @@ class UsersController < ApplicationController
     @user.weight = params[:user][:weight]
     @user.gender = params[:user][:gender]
     @user.height = params[:user][:height]
-    if @user.save
-      redirect_to user_profile_path, notice: "Your info has been saved"
+
+    if @user.age != nil && @user.weight != nil
+      if @user.protein == nil && @user.save
+          redirect_to edit_macros_path, notice: "Last step! This will get your Macros!"
+      elsif @user.save
+        redirect_to user_profile_path, notice: "Your Info Has Been Saved"
+      else
+        flash[:notice] = "Something Went Wrong :(, Try Again!"
+        render :edit_profile
+      end
     else
-      render :edit
+      flash[:notice] = "Please Fill In Age and Weight"
+      render :edit_profile
     end
   end
 

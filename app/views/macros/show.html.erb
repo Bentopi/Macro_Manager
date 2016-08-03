@@ -1,29 +1,33 @@
 <div class="container">
+  <div class="text-center">
 
-  <% if @user.protein != nil %>
-    <h3><%= @user.username %>'s Nutrition Goals!</h3>  <br>
+      <% if @user.protein != nil %>
+        <h3><%= @user.username %>'s Nutrition Goals!</h3>  <br>
 
-    <h5> Calories: <%= @user.calories %>kcal <br></h5>
-    <h5> Protein: <%= @user.protein %>g <br></h5>
-    <h5> Carbs: <%= @user.carbs %>g <br></h5>
-    <h5> Fat: <%= @user.fat %>g <br></h5>
+        <h5> Calories: <%= @user.calories %>kcal <br></h5>
+        <h5> Protein: <%= @user.protein %>g <br></h5>
+        <h5> Carbs: <%= @user.carbs %>g <br></h5>
+        <h5> Fat: <%= @user.fat %>g <br></h5>
 
-    <br>
-    Notch: <%= @user.notch %>
-    <br>
-    <br>
-    <%= link_to "EDIT", edit_macros_path, class: "btn, btn-lg btn-primary" %>
+        <br>
+        Notch: <br>
+         <%= link_to "DOWN", notch_down_path, method: "patch" %> <%= (@user.notch * 10).to_i %> <%= link_to "UP", notch_up_path, method: "patch" %>
+        <br>
+        <br>
+        <%= link_to "Get New Macros", edit_macros_path, class: "btn, btn-lg btn-primary" %>
 
-  <% else %>
+      <% else %>
 
-    <div class="text-center">
-      <h2>
-        You don't have Macros yet<br> <br>
-        Let's get you some!
-      </h2>
-      <br>
-      <%= link_to "Okay!", edit_macros_path, class: "btn, btn-lg btn-primary" %>
-    </div>
+        <div class="text-center">
+          <h2>
+            You don't have Macros yet<br> <br>
+            Let's get you some!
+          </h2>
+          <br>
+          <%= link_to "Okay!", edit_macros_path, class: "btn, btn-lg btn-primary" %>
+        </div>
 
-  <% end %>
+      <% end %>
+  </div>
+
 </div>

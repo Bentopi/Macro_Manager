@@ -21,21 +21,21 @@ class MacroParser
     bmr, tdee_coef = 0, 0
 
     if @gender == "M"
-      bmr = (66 + (6.2 * @weight.to_f) + (12.7 * @height.to_f) - (6.76 * @age.to_f)).to_i
+      bmr = (66 + (6.2 * @weight) + (12.7 * @height) - (6.76 * @age)).to_f
     elsif @gender == "F"
-      bmr = (655.1 + (4.35 * @weight.to_f) + (4.7 * @height.to_f) - (4.7 * @age.to_f)).to_i
+      bmr = (655.1 + (4.35 * @weight) + (4.7 * @height) - (4.7 * @age)).to_f
     end
 
     if @workout_count && @workout_intensity
-      tdee_coef = (@workout_count.to_f * @workout_intensity.to_f) + 1.2
+      tdee_coef = ((@workout_count * @workout_intensity).to_f + 1.2) + (@notch/2)
     end
 
-    tdee = (bmr * tdee_coef).to_i
+    tdee = (bmr * tdee_coef)
 
-    @calories = (tdee + ((@weight_rate.to_f * 3500)/7)).to_i
+    @calories = (tdee + ((@weight_rate * 3500)/7))
 
     if @age
-      age = @age.to_i
+      age = @age
     end
 
     case
@@ -57,61 +57,44 @@ class MacroParser
       end
 
     case
-      when @weight_rate == "-1.5"
-        p_low += 0.25
-        f_low -= 0.1
-      when @weight_rate == "-1"
-        p_low += 0.1725
-        f_low -= 0.05
-      when @weight_rate == "-0.5"
-        p_low += 0.1
-        f_low += 0
-      when @weight_rate == "0"
-        p_low += 0.035
-        f_low += 0.075
-      when @weight_rate == "0.65"
-        p_low += 0.01
-        f_low += 0.1
+    when @weight_rate == -1.5
+      p_high += 0.02
+      f_high -= 0.18
+    when @weight_rate == -1
+      p_high -= 0.06
+      f_high -= 0.14
+    when @weight_rate == -0.5
+      p_high -= 0.12
+      f_high -= 0.1
+    when @weight_rate == 0
+      p_high -= 0.15
+      f_high -= 0.06
+    when @weight_rate == 0.65
+      p_high -= 0.21
+      f_high -= 0.02
     end
 
-    if @workout_count && @workout_count.to_i == 0
-      p_low -= 0.2
-      f_low += 0.025
+    if @workout_count && @workout_count == 0
+      p_high -= 0.3
     end
 
-    if @workout_count && @workout_count.to_i > 0
+    if @workout_count && @workout_count > 0
       case
         when @workout_type == "L"
-          p_low += 0.1
+          p_high += 0.03
         when @workout_type == "C"
-          p_low -= 0.2
-          f_low -= 0.03
+          p_high -= 0.2
+          f_high -= 0.02
         when @workout_type == "M"
-          p_low += 0.05
-          f_low -= 0.02
+          f_high -= 0.02
       end
     end
 
-    @protein = (@weight.to_f * (p_high - ((p_high - p_low)/2) * (@weight_rate.to_f + 1.5))).to_i
+    @protein = ((@weight * p_high)  -  ((p_high - p_low)/2) * (@weight_rate + 1.5)).to_i
 
-    @fat = (@weight.to_f * (f_high - ((f_high - f_low)/2) * (@weight_rate.to_f + 1.5))).to_i
+    @fat = ((@weight * f_high)  -  ((f_high - f_low)/2) * (@weight_rate + 1.5)).to_i
 
     @carbs = ((@calories - ((@protein * 4) + (@fat * 9)))/4).to_i
-
-    puts "==================="
-    puts "age: #{age}"
-    puts "gender: #{@gender}"
-    puts "height: #{@height}"
-    puts "weight: #{@weight}"
-    puts "weight_rate #{@weight_rate}"
-    puts "workout count: #{@workout_count}"
-    puts "workout type: #{@workout_type}"
-    puts "workout Intensity: #{@workout_intensity}"
-    puts "check out my protein: #{@protein}"
-    puts "check out my carbs: #{@carbs}"
-    puts "check out my fat: #{@fat}"
-    puts "check out my calories: #{@calories}"
-    puts "====================="
 
   end
 end

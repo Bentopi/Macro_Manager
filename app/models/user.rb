@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :username, presence: true
 
+  has_many :mealplans
+  has_many :meals, through: :mealplans
+
   def height_formatted
     inches = self.height.to_i % 12
     feet = self.height.to_i / 12

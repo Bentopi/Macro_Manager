@@ -1,33 +1,60 @@
 <div class="container">
+  <br><br>
   <div class="text-center">
+    <div class="col-sm-6 col-sm-offset-3 margin30">
+        <div class="service-box wow animated fadeIn" data-wow-delay="0.1s">
+            <i class="fa fa-cutlery" aria-hidden="true"></i>
+            <% if @user.protein != nil %>
+            <br>
 
-      <% if @user.protein != nil %>
-        <h3><%= @user.username %>'s Nutrition Goals!</h3>  <br>
+            <p>
+                      <h3 class="workout-scheme">YOUR DAILY GOALS</h3><br>
+                      <h3><small> <%= @user.calories %> Calories<br>
+                       <%= @user.protein %>g Protein <br>
+                       <%= @user.carbs %>g Carbs <br>
+                       <%= @user.fat %>g Fat</h3></small>
 
-        <h5> Calories: <%= @user.calories %>kcal <br></h5>
-        <h5> Protein: <%= @user.protein %>g <br></h5>
-        <h5> Carbs: <%= @user.carbs %>g <br></h5>
-        <h5> Fat: <%= @user.fat %>g <br></h5>
 
-        <br>
-        Notch: <br>
-         <%= link_to "DOWN", notch_down_path, method: "patch" %> <%= (@user.notch * 10).to_i %> <%= link_to "UP", notch_up_path, method: "patch" %>
-        <br>
-        <br>
-        <%= link_to "Get New Macros", edit_macros_path, class: "btn, btn-lg btn-primary" %>
+                    <% else %>
 
-      <% else %>
+                      <div class="text-center">
+                        <h2>
+                          You don't have Macros yet<br> <br>
+                          Let's get you some!
+                        </h2>
+                        <br>
+                        <%= link_to "Okay!", edit_macros_path, class: "btn, btn-lg btn-primary" %>
+                      </div>
 
-        <div class="text-center">
-          <h2>
-            You don't have Macros yet<br> <br>
-            Let's get you some!
-          </h2>
-          <br>
-          <%= link_to "Okay!", edit_macros_path, class: "btn, btn-lg btn-primary" %>
+                    <% end %>
+              </p>
         </div>
+    </div><!--service column-->
+    <div class="row">
+      <div class="col-xs-12 wow animated fadeIn" data-wow-delay="0.2s">
+        <%= link_to "Get New Macros", edit_macros_path, class: "btn, btn-lg btn-danger" %>
+      </div>
+    </div>
 
-      <% end %>
   </div>
 
 </div>
+
+                      <!-- Notch System Coming Soon -->
+
+                      <!-- <br>
+                      Notch: <br>
+                       <%= link_to notch_down_path, method: "patch" do %>
+                       <div class="notch-buttons">
+                          <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+                       </div>
+
+                         <% end %>
+
+                       <%= (@user.notch * 10).to_i %>
+
+                      <%= link_to notch_up_path, method: "patch" do %>
+                      <i class="fa fa-arrow-circle-up notch-buttons" aria-hidden="true"></i>
+                      <% end %>
+                      <br>
+                      <br> -->

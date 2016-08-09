@@ -1,11 +1,14 @@
 <div class="container">
+  <br>
   <%= form_for @user, url:edit_macros_path do |f| %>
 
-  <div class="well well-lg login-form">
-    <div class="form-inline text-center">
+  <div class="col-sm-6 col-md-6 col-sm-offset-3 margin30">
       <div class="row">
         <div class="col-xs-12">
-          <h3><%= f.label :weight_rate, "Weight Goal" %></h3>
+          <div class="form-group">
+              <div class="row text-center">
+                  <h3>Weight Goal</h3>
+              </div>
           <%= f.select :weight_rate, options_for_select([
             ["Maintain Weight" , 0], ["Lose 1.5 lbs every week" , -1.5],
             ["Lose 1 lb every week" , -1], ["Lose 0.5 lbs every week" , -0.5],
@@ -18,10 +21,8 @@
 
     <div class="form-group">
         <div class="row text-center">
-            <h3>Workout Scheme</h3>
+            <h3 class="workout-scheme">Workout Scheme</h3>
         </div>
-
-
         <div class="row text-center">
           <div class="col-xs-12">
               <div class="form-group">
@@ -70,7 +71,7 @@
 
 
     <div class="form-group">
-        <%= f.submit "Calculate Macros!", class:'btn btn-primary btn-lg btn-block' %>
+        <%= f.submit "Calculate Macros!", class:'btn btn-danger btn-lg btn-block' %>
     </div>
     <% end %>
   </div>

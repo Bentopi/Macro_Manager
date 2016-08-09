@@ -2,7 +2,7 @@ class MacrosController < ApplicationController
 
   before_action :except => [:guest_macros] do
     if @current_user.age.nil? || @current_user.weight.nil?
-      redirect_to edit_profile_path, alert: "We're gonna need this info before Macros!"
+      redirect_to edit_profile_path, alert: "We're gonna need your stats first!"
     end
   end
 
@@ -15,6 +15,7 @@ class MacrosController < ApplicationController
 
     macroparser = GuestMacroParser.new(params)
     macroparser.parse!
+
 
     @fat = macroparser.fat
     @protein = macroparser.protein

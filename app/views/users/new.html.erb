@@ -7,9 +7,14 @@
      <% end %>
   </div>
 <% end %>
-
-
-  <div class="well well-lg login-form">
+<br>
+<div class="row center-title signup-quote">
+    <div class="col-md-8 col-md-offset-2 clearfix text-center wow animated fadeInUp">
+        <h2>Commit and Succeed</h2>
+    </div>
+</div><!--service column-->
+<div class="row wow animated fadeIn" data-wow-delay="0.2s">
+  <div class="col-sm-8 col-sm-offset-2 margin30">
     <%= form_for @user, url: create_user_path do |f| %>
       <div class="form-group">
         <%= f.label :email %>
@@ -32,8 +37,10 @@
       </div>
 
       <div class="form-group">
-        <%= f.submit class:"btn btn-lg btn-block btn-primary" %>
+        <%= f.submit class:"btn btn-lg btn-block btn-danger" %>
       </div>
       <% end %>
     </div>
+</div>
+
 </div>

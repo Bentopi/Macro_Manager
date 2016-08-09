@@ -1,0 +1,65 @@
+<div class="container">
+  <br>
+  <div class="wow animated fadeIn text-center" data-wow-delay="0.05s">
+    <h2 class="mealplan-title mealplan-title-bottom-padding">Search for your favorite food</h2>
+  </div>
+  <div class="form-group wow animated fadeIn text-center" data-wow-delay="0.1s">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+              <%= form_tag search_food_path do %>
+        <div class="form-group">
+            <%= text_field_tag(:query, "", class: "form-control", placeholder: "Enter Food Name") %>
+        </div>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-offset-2 col-sm-4">
+          <div class="form-group">
+              <%= submit_tag("Search", class: "btn btn-block btn-danger") %>
+          </div>
+        </div>
+      <% end %>
+        <div class="col-xs-6 col-sm-4">
+          <div class="btn btn-block btn-success">
+            Add to Favorites!
+          </div>
+        </div>
+      </div>
+
+
+  </div>
+
+
+<br>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <div class="col-sm-6 col-sm-offset-3 margin30">
+        <% if @food_name %>
+        <div class="service-box wow animated fadeIn" data-wow-delay="0.2s">
+          <i class="fa fa-cutlery" aria-hidden="true"></i>
+
+            <h3 class="food-search-title">Seach Results</h3>
+
+              <strong class="food-search-name"><%= @food_name %></strong> <br>
+              <% if @food_brand %>
+                Brand: <%= @food_brand %> <br>
+              <% end %>
+              <%= @food_serving %> (<%= @food_weight %> <%= @food_weight_unit %>) <br>
+              <%= @food_calories %> Calories <br>
+              <%= number_to_human(@food_protein) %>g Protein <br>
+              <%= number_to_human(@food_carbohydrate) %>g Carbs <br>
+              <%= number_to_human(@food_fat) %>g Fat <br>
+
+               <br>
+        </div>
+      </div><!--service column-->
+          <% end %>
+    </div>
+
+
+
+  </div>
+</div>

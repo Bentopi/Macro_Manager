@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       if @user.protein == nil && @user.save
           redirect_to edit_macros_path, notice: "Last step! This will get your Macros!"
       elsif @user.save
-        redirect_to user_profile_path, notice: "Your Info Has Been Saved"
+        redirect_to user_profile_path, notice: "Your Changes Have Been Saved"
       else
         flash[:notice] = "Something Went Wrong :(, Try Again!"
         render :edit_profile

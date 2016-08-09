@@ -1,0 +1,9 @@
+preferred_syntax = :scss
+http_path = '/'
+css_dir = '/vendor/assets/medical/css'
+sass_dir = '/vendor/assets/medical/scss'
+images_dir = '/vendor/assets/medical/img'
+javascripts_dir = '/vendor/assets/medical/js'
+relative_assets = true
+line_comments = false
+# output_style = :compressed

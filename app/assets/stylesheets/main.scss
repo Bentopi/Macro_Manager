@@ -1,73 +1,82 @@
-$mainColor: #3498db;
-$altColor: #8e44ad;
-$whitetextColor: #ecf0f1;
-$blacktextColor: #555;
-
-.guest-macro-form, .guest-macro-box, .login-form {
-  font-size: 1em;
-  line-height: 130%;
+.notch-buttons {
+  font-size: 0.5em;
 }
-.huge-text {
-  font-size: 1.4em;
+.signin-button {
+  margin-left: 20px;
 }
-.alert {
-  font-size: 1.4em;
+.signup-quote {
+  padding-bottom: 15px;
 }
-
-.header-main {
-  a {
-    color: #ecf0f1;
-    font-size: 1.5em;
-  }
-  background-color: #337AB7;
-  padding-bottom: 7px;
-  margin-bottom: 20px;
+.workout-scheme {
+  padding-bottom: 0px;
+  margin-bottom: 10px;
 }
-.mealplan-header {
-  color: $whitetextColor;
-  font-size: 1.2em;
+.meal-title {
+  font-size: 1.3em;
 }
-
+.meal-body {
+  font-size: 1.1em;
+}
+.meals {
+  margin-left: 20px;
+}
+.mealplan-title {
+  color: #e74c3c;
+}
+.mealplan-title-bottom-padding {
+  padding-bottom: 0px;
+}
+.button-bottom-margin {
+  margin-bottom: 35px;
+}
 .macro-footer {
-  color: $whitetextColor;
+  color: #ecf0f1;
   position: fixed;
-  bottom: 50px;
+  bottom: 0px;
   right: 0px;
   left: 0px;
   font-size: 1.0em;
-  background-color: $mainColor;
+  background-color: #e74c3c;
   padding: 5px;
   padding-bottom: 5px;
 }
-.macro-footer-2 {
-  color: $whitetextColor;
-  position: fixed;
-  bottom: 1px;
-  right: 0px;
-  left: 0px;
-  font-size: 1.0em;
-  background-color: $altColor;
-  padding: 5px;
-  padding-bottom: 5px;
+.macro-footer-text {
+  font-size: 1.4em;
 }
-body {
-  font-family: "Helvetica", "Arial", sans-serif;
-  color: $whitetextColor;
-  background-color: #34495e;
-  .guest-macro-form, .guest-macro-box, .login-form {
-      color: $blacktextColor;
-  }
+.container-edit {
+  padding-bottom: 70px;
 }
-.intro-text {
-  color: $whitetextColor;
+.food-search-title {
+  padding-top: 25px;
+  padding-bottom: 0px;
+  margin-bottom: 15px;
 }
-.btn-spacer {
-  margin-left: 10px;
+.food-search-name {
+  font-size: 1.4em;
 }
-.form-divider {
-  border: 1px solid $blacktextColor;
+.navbar-logo {
+  margin-left: 3%;
+  width: 110px;
 }
 
-body {
-  padding-bottom: 120px;
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+.home-box-size {
+  height: 210px;
+  }
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .home-box-size {
+  height: 285px;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+.home-box-size {
+  height: 260px;
+  }
 }

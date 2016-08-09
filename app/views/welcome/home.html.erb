@@ -1,3 +1,82 @@
-<div class="container text-center">
-   <h1 class="intro-text">Hello <%=@current_user.username if @current_user%>!</h1>
-</div>
+<br>
+  <div class="container">
+      <div class="row center-title">
+        <br>
+          <div class="col-md-8 col-md-offset-2 clearfix text-center wow animated fadeInUp">
+              <h2>Eating well doesn't have to be hard.</h2>
+              <p>
+                  With our meal plan tools and guidelines you'll reach your goals without
+                  having to spend a ton of time meal prepping.
+                  Our mission is to make your life easier.
+              </p>
+          </div>
+      </div><!--service column-->
+
+      <div class="row">
+          <% if @current_user %>
+          <%= link_to macros_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.1s">
+                  <i class="fa fa-calculator" aria-hidden="true"></i>
+                  <h4>Macronutrient Calculator</h4>
+                  <p>
+                      The simplest yet most advanced online nutrition calculator will
+                      tell you exactly what your macronutrient goals are;
+                      whether you want to lose weight or build lean mass.
+                  </p>
+              </div>
+          </div><!--service column-->
+          <% end %>
+
+          <% else %>
+          <%= link_to guest_macros_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.1s">
+                  <i class="fa fa-calculator" aria-hidden="true"></i>
+                  <h4>Macronutrient Calculator</h4>
+                  <p>
+                      The simplest yet most advanced online nutrition calculator will
+                      tell you exactly what your macronutrient goals are;
+                      whether you want to lose weight or build lean mass.
+                  </p>
+              </div>
+          </div><!--service column-->
+          <% end %>
+          <% end %>
+          <%= link_to mealplans_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.2s">
+                  <i class="fa fa-cutlery" aria-hidden="true"></i>
+                  <h4>Meal Plan Generator</h4>
+                  <p>
+                      Automatically create easy to follow meal plans that require
+                      minimal prep while staying in line with your goals.
+                      Don't worry, you'll still have the freedom to eat your favorite snacks!
+                  </p>
+              </div>
+          </div><!--service column-->
+          <% end %>
+          <%= link_to coaching_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.3s">
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                  <h4>Custom Meal Plans</h4>
+                  <p>
+                    If you're looking to take it one step further and
+                    get the best possible results; I will create a plan
+                    that fits your specific needs, training regimen and lifestyle.
+              </div>
+          </div><!--service column-->
+          <% end %>
+          <%= link_to coaching_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.4s">
+                  <i class="fa fa-trophy" aria-hidden="true"></i>
+                  <h4>Athlete Nutrition</h4>
+                  <p>
+                      Have a meet/competition coming up? Need to cut down to a lower weightclass and keep your strength? if you're looking to be in peak performance condition, look no further.
+                  </p>
+              </div>
+          </div><!--service column-->
+          <% end %>
+      </div>

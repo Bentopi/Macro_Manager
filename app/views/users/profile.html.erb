@@ -1,17 +1,24 @@
 <div class="container">
-      Username:
-      <%= @user.username %> <br>
-      Email:
-      <%= @user.email %> <br>
-      Gender:
-      <%= @user.gender %> <br>
-      Age:
-      <%= @user.age %> years. <br>
-      Height:
-      <%= @user.height_formatted %> <br>
-      Weight:
-      <%= @user.weight %> lbs. <br>
       <br>
-      <%= link_to "EDIT", edit_profile_path, class: "btn, btn-lg btn-primary" %>
-
+      <br>
+      <div class="col-sm-6 col-sm-offset-3 col-md-6 margin30">
+          <div class="service-box wow animated fadeIn" data-wow-delay="0.15s">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <br>
+            <br>
+              <h3> YOUR STATS <br> <br>
+                <small>
+                  <%= @user.full_gender %> <br>
+                  <%= @user.age %> years. <br>
+                  <%= @user.height_formatted %><br>
+                  <%= number_to_human(@user.weight) %> lbs. <br>
+                  <%= @user.email %> <br>
+                </small></h3>
+          </div>
+      </div><!--service column-->
+      <div class="row text-center wow animated fadeIn" data-wow-delay="0.3s">
+        <div class="col-xs-12">
+          <%= link_to "Edit Info", edit_profile_path, class: "btn, btn-lg btn-danger" %>
+        </div>
+      </div>
 </div>

@@ -1,15 +1,19 @@
 class FoodController < ApplicationController
 
-  def list
+  def finder
 
   end
 
   def search
 
+    puts "============"
+    puts params
+    puts "============"
+
     response = JSON.parse(Food.search(params[:query]))
 
     if response["foods"]["total_results"] == "0"
-      redirect_to food_list_path, notice: "Food not found!"
+      redirect_to food_finder_path, notice: "Food not found!"
     else
 
       if response["foods"]["food"].kind_of?(Array)
@@ -25,26 +29,25 @@ class FoodController < ApplicationController
       details = JSON.parse(Food.get(food_id))
 
       if details["food"]["servings"]["serving"].kind_of?(Array)
-
-        @food_calories = details["food"]["servings"]["serving"][0]["calories"]
-        @food_protein = details["food"]["servings"]["serving"][0]["protein"]
-        @food_carbohydrate = details["food"]["servings"]["serving"][0]["carbohydrate"]
-        @food_fat = details["food"]["servings"]["serving"][0]["fat"]
+        @food_calories = details["food"]["servings"]["serving"][0]["calories"].to_i
+        @food_protein = details["food"]["servings"]["serving"][0]["protein"].to_i
+        @food_carbohydrate = details["food"]["servings"]["serving"][0]["carbohydrate"].to_i
+        @food_fat = details["food"]["servings"]["serving"][0]["fat"].to_i
         @food_serving = details["food"]["servings"]["serving"][0]["serving_description"]
         @food_weight = details["food"]["servings"]["serving"][0]["metric_serving_amount"].to_i
         @food_weight_unit = details["food"]["servings"]["serving"][0]["metric_serving_unit"]
 
       else
         @food_serving = details["food"]["servings"]["serving"]["serving_description"]
-        @food_calories = details["food"]["servings"]["serving"]["calories"]
-        @food_protein = details["food"]["servings"]["serving"]["protein"]
-        @food_carbohydrate = details["food"]["servings"]["serving"]["carbohydrate"]
-        @food_fat = details["food"]["servings"]["serving"]["fat"]
+        @food_calories = details["food"]["servings"]["serving"]["calories"].to_i
+        @food_protein = details["food"]["servings"]["serving"]["protein"].to_i
+        @food_carbohydrate = details["food"]["servings"]["serving"]["carbohydrate"].to_i
+        @food_fat = details["food"]["servings"]["serving"]["fat"].to_i
         @food_weight = details["food"]["servings"]["serving"]["metric_serving_amount"].to_i
         @food_weight_unit = details["food"]["servings"]["serving"]["metric_serving_unit"]
       end
 
-      render :list
+      render :finder
   end
 end
 end

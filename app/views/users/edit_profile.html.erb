@@ -1,5 +1,4 @@
 <div class="container">
-
 <% if @user.errors.any? %>
   <div class="alert alert-danger" role="alert">
     <% @user.errors.full_messages.each do |msg| %>
@@ -7,9 +6,11 @@
      <% end %>
   </div>
 <% end %>
+  <br>
+  <br>
 
-
-  <div class="well well-lg login-form">
+  <div class="col-md-6 col-md-offset-3 margin30 wow animated fadeIn" data-wow-delay="0.1s">
+    <h2 class="text-center"><%= @user.username %>'s Stats</h2>
     <%= form_for @user, url:edit_profile_path do |f| %>
     <div class="form-group">
         <div class="row">
@@ -24,7 +25,7 @@
         </div>
     </div>
 
-    <div class="form-inline">
+    <div class="form-group">
         <div class="row">
             <div class="col-xs-5">
                 <div class="form-group">
@@ -40,8 +41,7 @@
             </div>
         </div>
     </div>
-    <br>
-    <div class="form-inline">
+    <div class="form-group">
         <div class="row">
             <div class="col-xs-4">
                 <div class="form-group">
@@ -53,9 +53,8 @@
             </div>
         </div>
     </div>
-    <br>
     <div class="form-group">
-      <%= f.submit class:"btn btn-lg btn-primary" %>
+      <%= f.submit class:"btn btn-lg btn-block btn-danger" %>
     </div>
 
       <% end %>

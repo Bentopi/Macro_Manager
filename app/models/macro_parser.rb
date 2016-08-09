@@ -57,21 +57,21 @@ class MacroParser
       end
 
     case
-    when @weight_rate == -1.5
-      p_high += 0.02
-      f_high -= 0.18
-    when @weight_rate == -1
-      p_high -= 0.06
-      f_high -= 0.14
-    when @weight_rate == -0.5
-      p_high -= 0.12
-      f_high -= 0.1
-    when @weight_rate == 0
-      p_high -= 0.15
-      f_high -= 0.06
-    when @weight_rate == 0.65
-      p_high -= 0.21
-      f_high -= 0.02
+      when @weight_rate == -1.5
+        p_high += 0.02
+        f_high -= 0.18
+      when @weight_rate == -1
+        p_high -= 0.06
+        f_high -= 0.14
+      when @weight_rate == -0.5
+        p_high -= 0.12
+        f_high -= 0.1
+      when @weight_rate == 0
+        p_high -= 0.15
+        f_high -= 0.06
+      when @weight_rate == 0.65
+        p_high -= 0.21
+        f_high -= 0.02
     end
 
     if @workout_count && @workout_count == 0

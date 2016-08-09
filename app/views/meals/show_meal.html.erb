@@ -1,0 +1,43 @@
+<div class="container">
+<br>
+
+  <div class="row">
+    <div class="text-center">
+      <h2 class="mealplan-title"> <%= @meal.recipe.name %></h2>
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 margin30">
+    <div class="service-box wow animated fadeIn" data-wow-delay="0.1s">
+        <h4>Ingredients</h4>
+        <br>
+        <% @meal.recipe.recipeparts.each do |r| %>
+            <h5>
+            <%= pluralize(number_to_human((r.amount * r.ingredient.serving_amount) * @meal.quantity), r.ingredient.serving_name)  %>
+            -
+            <%=r.ingredient.name%>
+          </h5>
+        <% end %>
+        Approx:
+        <%= number_to_human(@meal.recipe.kcals * @meal.quantity) %>kcal -
+        <%= number_to_human(@meal.recipe.proteins * @meal.quantity) %>P -
+        <%= number_to_human(@meal.recipe.carbs * @meal.quantity) %>C -
+        <%= number_to_human(@meal.recipe.fats * @meal.quantity) %>F
+    </div>
+  </div><!--service column-->
+</div>
+
+
+  <%= simple_format(@meal.recipe.description) %>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= link_to mealplan_path(id: @meal.mealplan_id) do %>
+        <div class="btn btn-success btn-block button-bottom-margin">
+          Back
+        </div>
+        <% end %>
+      </div>
+    </div>
+</div>

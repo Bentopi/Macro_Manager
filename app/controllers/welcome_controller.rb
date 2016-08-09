@@ -1,7 +1,6 @@
 class WelcomeController < ApplicationController
 
   def home
-
   end
 
   def about
@@ -9,4 +8,5 @@ class WelcomeController < ApplicationController
 
   def coaching
   end
+
 end

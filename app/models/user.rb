@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
     feet = self.height.to_i / 12
     "#{feet} ft. #{inches} in."
   end
+
+  def full_gender
+    if gender == "F"
+      return "Female"
+    else
+      return "Male"
+    end
+  end
 end

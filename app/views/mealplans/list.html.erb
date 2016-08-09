@@ -1,19 +1,58 @@
 <div class="container">
+  <br>
   <div class="text-center">
-    <% @mealplans.each do |mealplan| %>
-    <h3><%= link_to mealplan.name, mealplan_path(id: mealplan.id) %>
-      <%= link_to "Delete", delete_mealplan_path(mealplan.id), method: :delete %> <br>
-    </h3>
-      <% end %>
+    <div class="wow animated fadeIn" data-wow-delay="0.1s">
+      <h2 class="mealplan-title mealplan-title-bottom-padding">Your Mealplans</h2>
+      <hr class="form-divider">
+    </div>
+    <br>
+    <div class="wow animated fadeIn" data-wow-delay="0.15s">
+      <% @mealplans.each do |mealplan| %>
+      <h3><%= link_to mealplan.name, mealplan_path(id: mealplan.id) %>
+        <small><%= link_to "x", delete_mealplan_path(mealplan.id), method: :delete %></small> <br>
+      </h3>
+        <% end %>
+    </div>
+
   </div>
 
   <br>
-
-  <div class="text-center">
-    <%= link_to new_mealplan_path do %>
-      <div class="btn btn-lg btn-primary">
-        New Mealplan
+  <hr class="form-divider wow animated fadeIn" data-wow-delay="0.2s">
+  <div class="row wow animated fadeIn" data-wow-delay="0.2s">
+    <div class="col-xs-6">
+      <%= form_tag(url: auto_mealplans_path) do |f| %>
+        <div class="form-group">
+          <div class="text-center">
+            <%= submit_tag "Auto Meal Plans", class:"btn btn-danger btn-block" %>
+          </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="form-group">
+        <%= select_tag :collection, options_for_select(@collection_names),
+         {prompt: "Select Collection", class: "form-control"}%>
       </div>
-      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <strong><h4 class="text-center wow animated fadeIn" data-wow-delay="0.25s">- or - </h4></strong>
+  <div class="row wow animated fadeIn" data-wow-delay="0.3s">
+    <div class="col-xs-6">
+      <%= form_tag(url: new_mealplan_path) do |f| %>
+        <div class="form-group">
+          <div class="text-center">
+            <%= submit_tag "Create Your Own", class:"btn btn-danger btn-block" %>
+          </div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="form-group">
+          <%= text_field_tag :age, nil, placeholder:"Give it a name", class: "form-control"%>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+
   </div>
 </div>

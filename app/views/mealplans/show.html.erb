@@ -5,7 +5,6 @@
   </div>
   <br>
 
-
   <div class="row">
       <% @mealplan.meals.each do |meal|%>
     <div class="col-sm-6 col-sm-offset-6 margin30 meals">
@@ -18,14 +17,12 @@
           <%= pluralize(number_to_human((part.amount * part.ingredient.serving_amount) * meal.quantity), part.ingredient.serving_name) %> <%= part.ingredient.name %>
         <% end %>
       </span>
-
-
-
-        <hr>
-      </div>
+      <hr>
+    </div>
 
     <% end %>
   </div>
+  <br>
 
   <div class="row">
     <div class="col-xs-6">

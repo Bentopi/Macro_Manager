@@ -41,7 +41,10 @@
   padding-bottom: 5px;
 }
 .macro-footer-text {
-  font-size: 1.4em;
+  font-size: 1em;
+}
+.macro-footer-text-kcals {
+  font-size: 1.2em;
 }
 .container-edit {
   padding-bottom: 70px;
@@ -58,13 +61,21 @@
   margin-left: 3%;
   width: 110px;
 }
+.bigger-text {
+  font-size: 1.4em;
+}
 
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
 .home-box-size {
   height: 210px;
   }
-
+  .macro-footer-text {
+    font-size: 1.4em;
+  }
+  .macro-footer-text-kcals {
+    font-size: 1.6em;
+  }
 }
 
 /* Medium Devices, Desktops */

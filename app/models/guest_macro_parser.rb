@@ -11,9 +11,9 @@
     bmr, age, tdee_coef = 0, 0, 0
 
     if params[:gender] == "M"
-      bmr = (66 + (6.2 * params[:weight].to_f) + (12.7 * params[:height].to_f) - (6.76 * params[:age].to_f)).to_i
+      bmr = ((9.99 * params[:weight].to_f) + (6.25 * params[:height].to_f) - (4.92 * params[:age].to_f) + 5 ).to_i
     elsif params[:gender] == "F"
-      bmr = (655.1 + (4.35 * params[:weight].to_f) + (4.7 * params[:height].to_f) - (4.7 * params[:age].to_f)).to_i
+      bmr = ((9.99 * params[:weight].to_f) + (6.25 * params[:height].to_f) - (4.92 * params[:age].to_f) - 161).to_i
     end
 
     if params[:workout_count] && params[:workout_intensity]

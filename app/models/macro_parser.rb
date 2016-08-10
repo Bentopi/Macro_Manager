@@ -21,9 +21,9 @@ class MacroParser
     bmr, tdee_coef = 0, 0
 
     if @gender == "M"
-      bmr = (66 + (6.2 * @weight) + (12.7 * @height) - (6.76 * @age)).to_f
+      bmr = ((9.99 * @weight.to_f) + (6.25 * @height.to_f) - (4.92 * @age.to_f) + 5 ).to_i
     elsif @gender == "F"
-      bmr = (655.1 + (4.35 * @weight) + (4.7 * @height) - (4.7 * @age)).to_f
+      bmr = ((9.99 * @weight.to_f) + (6.25 * @height.to_f) - (4.92 * @age.to_f) - 161).to_i
     end
 
     if @workout_count && @workout_intensity

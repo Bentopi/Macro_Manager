@@ -1,5 +1,7 @@
 class FoodController < ApplicationController
 
+  before_action :authenticate_user!
+
   def finder
 
   end

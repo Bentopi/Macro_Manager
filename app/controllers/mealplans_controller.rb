@@ -1,9 +1,9 @@
 class MealplansController < ApplicationController
 
+  before_action :authenticate_user!
+
   before_action do
-    if @current_user.nil?
-      redirect_to sign_in_path, alert: "Please sign in if you want to make a Mealplan"
-    elsif @current_user.age == nil
+    if @current_user.age == nil
       redirect_to edit_profile_path, alert: "We're gonna need this info if you want a Mealplan!"
     elsif @current_user.protein == nil
       redirect_to edit_macros_path, alert: "We need to get Macros first if you want a Mealplan!"
@@ -16,12 +16,6 @@ class MealplansController < ApplicationController
   end
 
   def new
-    puts "============="
-    puts params[:name]
-    puts "============="
-
-
-
     if params[:name] == ""
       mealplan_number = @current_user.mealplans.size + 1
       @mealplan = Mealplan.new
@@ -47,6 +41,12 @@ class MealplansController < ApplicationController
   def edit
     @mealplan = Mealplan.find_by id: params[:id]
     @meals = @mealplan.meals
+
+    @remaining_calories = @current_user.calories - @mealplan.kcals
+    @remaining_protein = @current_user.protein - @mealplan.proteins
+    @remaining_carbs = @current_user.carbs - @mealplan.carbs
+    @remaining_fat = @current_user.fat - @mealplan.fats
+
   end
 
   def delete_mealplan
@@ -61,11 +61,15 @@ class MealplansController < ApplicationController
     @new_meal.mealplan_id = @mealplan.id
     @new_meal.recipe_id = params[:mealplan][:meals]
     @new_meal.quantity = 1
+    @remaining_calories = @current_user.calories - @mealplan.kcals - @new_meal.kcals
 
-    if @new_meal.save
-      redirect_to edit_mealplan_path, notice: "Great! Add Another Meal"
+    if @remaining_calories < 0
+      flash[:notice] = "That's too many calories, remove something first before adding this meal"
+      redirect_to edit_mealplan_path(id: @mealplan.id)
+    elsif @new_meal.save && @remaining_calories > 0
+      redirect_to edit_mealplan_path, notice: "Meal Added"
     else
-      flash[:notice] = "Something went wrong"
+      flash[:notice] = "Oops! Something went wrong... Try again?"
       render :edit
     end
   end

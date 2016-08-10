@@ -1,5 +1,7 @@
 class MealsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def show_meal
   @meal = Meal.find_by id: params[:id]
   end

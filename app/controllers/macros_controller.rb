@@ -1,5 +1,7 @@
 class MacrosController < ApplicationController
 
+  before_action :authenticate_user!, :except => [:guest_macros]
+
   before_action :except => [:guest_macros] do
     if @current_user.age.nil? || @current_user.weight.nil?
       redirect_to edit_profile_path, alert: "We're gonna need your stats first!"

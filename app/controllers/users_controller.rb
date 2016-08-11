@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
     if @user.age != nil && @user.weight != nil
       if @user.protein == nil && @user.save
-          redirect_to edit_macros_path, notice: "Last step! This will get your Macros!"
+          redirect_to edit_macros_path, notice: "This is the Last Step!"
       elsif @user.save
         redirect_to user_profile_path, notice: "Your Changes Have Been Saved"
       else

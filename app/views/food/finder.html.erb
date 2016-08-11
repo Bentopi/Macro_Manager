@@ -8,7 +8,7 @@
       <div class="col-sm-8 col-sm-offset-2">
               <%= form_tag search_food_path do %>
         <div class="form-group">
-            <%= text_field_tag(:query, "", class: "form-control", placeholder: "Enter Food Name") %>
+            <%= text_field_tag(:query, params[:query], class: "form-control", placeholder: "Enter Food Name") %>
         </div>
       </div>
     </div>
@@ -19,15 +19,51 @@
           </div>
         </div>
       <% end %>
+
+
+
+        <%= form_tag add_favorite_path do %>
+
         <div class="col-xs-6 col-sm-4">
-          <div class="btn btn-block btn-success">
-            Add to Favorites!
+          <div class="form-group">
+              <%= submit_tag "Add to Favorites!", class:'btn btn-success btn-block' %>
           </div>
         </div>
       </div>
+    </div>
+        <div class="row hidden-form">
+          <div class="form-group">
+              <%= label_tag :name %>
+              <%= text_field_tag :name, @food_name %>
+          </div>
+          <div class="form-group">
+              <%= label_tag :brand %>
+              <%= text_field_tag :brand, @food_brand %>
+          </div>
+          <div class="form-group">
+              <%= label_tag :calories %>
+              <%= number_field_tag :calories, @food_calories %>
+          </div>
+          <div class="form-group">
+              <%= label_tag :protein %>
+              <%= number_field_tag :protein, @food_protein %>
+          </div>
+          <div class="form-group">
+              <%= label_tag :carbs %>
+              <%= number_field_tag :carbs, @food_carbohydrate %>
+          </div>
+          <div class="form-group">
+              <%= label_tag :fat %>
+              <%= number_field_tag :fat, @food_fat %>
+          </div>
+          <div class="form-group">
+              <%= label_tag :serving %>
+              <%= text_field_tag :serving, @food_serving %>
+          </div>
+        </div>
+        <% end %>
 
 
-  </div>
 
 
 <br>

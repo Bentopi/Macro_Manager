@@ -1,0 +1,63 @@
+<br>
+  <div class="container">
+      <div class="row center-title">
+        <br>
+          <div class="col-md-8 col-md-offset-2 clearfix text-center wow animated fadeInUp">
+              <h2>The Meal Center</h2>
+              <p>
+                Instant access to everything food related!
+              </p>
+          </div>
+      </div><!--service column-->
+
+      <div class="row">
+          <%= link_to mealplans_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.1s">
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                  <h4>My Meal Plans</h4>
+                  <p>
+                    Your roadmaps to success.
+                    Automatically create Meal Plans from recipe collections and edit them as you please!
+                  </p>
+              </div>
+          </div><!--service column-->
+          <% end %>
+
+          <%= link_to recipe_collections_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.2s">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                  <h4>Recipe Collections</h4>
+                  <p>
+                    Whether you're into making everything in a crockpot,
+                    microwave or have an insatiable love for breakfast foods,
+                    we've got a collection of healthy recipes for you.
+              </div>
+          </div><!--service column-->
+          <% end %>
+
+          <%= link_to food_finder_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.3s">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                  <h4>Food Finder</h4>
+                  <p>
+                    Search for your favorite foods and save them. Then you'll be able to add them to your Meal Plans!
+                  </p>
+              </div>
+          </div><!--service column-->
+          <% end %>
+          <%= link_to favorites_path do %>
+          <div class="col-sm-6 col-md-3 margin30">
+              <div class="service-box wow animated fadeIn home-box-size" data-wow-delay="0.4s">
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                  <h4>Your Favorites</h4>
+                  <p>
+                    This is your own personal pantry for your favorite food items.
+                  </p>
+              </div>
+          </div><!--service column-->
+          <% end %>
+
+      </div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <br>
+  <div class="wow animated fadeIn text-center" data-wow-delay="0.1s">
+    <h2 class="mealplan-title mealplan-title-bottom-padding">Your Favorite Foods</h2>
+  </div>
+  <br>
+
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-6 margin30 meals">
+        <div class="wow animated fadeIn" data-wow-delay="0.15s">
+          <% @favorites.each do |favorite| %>
+            <strong class="meal-title">
+            <%=favorite.name %>
+            <small>
+              <%= link_to "x", delete_favorite_path(favorite.id), method: :delete %>
+            </small> <br>
+            </strong>
+            <span class="meal-body">
+          <%= favorite.recipeparts.first.ingredient_id %><br>
+          <%= number_to_human(favorite.kcals) %> kcals<br>
+          <%= number_to_human(favorite.proteins) %>g Protein<br>
+          <%= number_to_human(favorite.carbs) %>g Carbs<br>
+          <%= number_to_human(favorite.fats) %>g Fat<br></span>
+
+          <hr class="form-divider">
+            <% end %>
+        </div>
+      </div>
+    </div>
+</div>

@@ -12,7 +12,9 @@ class MealplansController < ApplicationController
 
   def list
     @mealplans = @current_user.mealplans
-    @collection_names = Recipe.pluck(:collection).uniq
+    @recipes = Recipe.where.not("category ~* ?", "^[0-9]")
+    @collection_names = @recipes.pluck(:collection).uniq
+
   end
 
   def new
@@ -47,6 +49,11 @@ class MealplansController < ApplicationController
     @remaining_carbs = @current_user.carbs - @mealplan.carbs
     @remaining_fat = @current_user.fat - @mealplan.fats
 
+    @collection_recipes = Recipe.where.not("category ~* ?", "^[0-9]")
+    @user_favorites = Recipe.where(category: (@current_user.id).to_s)
+
+    @recipes = @collection_recipes.or(@user_favorites)
+
   end
 
   def delete_mealplan
@@ -56,21 +63,29 @@ class MealplansController < ApplicationController
   end
 
   def add_meal
+    @recipes = Recipe.all
+    # @recipes = Recipe.where.not("category ~* ?", "^[0-9]")
+    # current_user_recipe Recipe.where(category: @current_user.id.to_s)
+    # shovel operation 2 into array number 1
     @mealplan = Mealplan.find_by id: params[:id]
     @new_meal = Meal.new
     @new_meal.mealplan_id = @mealplan.id
     @new_meal.recipe_id = params[:mealplan][:meals]
-    @new_meal.quantity = 1
-    @remaining_calories = @current_user.calories - @mealplan.kcals - @new_meal.kcals
+    @new_meal.quantity = params[:mealplan][:quantity]
 
-    if @remaining_calories < 0
-      flash[:notice] = "That's too many calories, remove something first before adding this meal"
-      redirect_to edit_mealplan_path(id: @mealplan.id)
-    elsif @new_meal.save && @remaining_calories > 0
-      redirect_to edit_mealplan_path, notice: "Meal Added"
+    unless params[:mealplan][:meals].present?
+      redirect_to edit_mealplan_path(id: @mealplan.id), notice: "You have to select a meal to add"
     else
-      flash[:notice] = "Oops! Something went wrong... Try again?"
-      render :edit
+      @remaining_calories = @current_user.calories - @mealplan.kcals - @new_meal.kcals
+
+      if @remaining_calories < 0
+        redirect_to edit_mealplan_path(id: @mealplan.id), notice: "That's too many calories, remove something first before adding this meal"
+      elsif @new_meal.save && @remaining_calories > 0
+        redirect_to edit_mealplan_path, notice: "Meal Added"
+      else
+        flash[:notice] = "Oops! Something went wrong... Try again?"
+        render :edit
+      end
     end
   end
 

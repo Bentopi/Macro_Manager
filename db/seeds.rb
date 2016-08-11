@@ -6,6 +6,15 @@ Recipepart.delete_all
 Ingredient.delete_all
 
 
+
+u = User.create! username: "Bentopi", email: "bentopi@topi.com",
+                   password: "Bentopi", gender: "M", height: 69,
+                   weight: 164.0, age: 29, weight_rate: -1.5,
+                   workout_count: 4, workout_intensity: 0.05,
+                   workout_type: "L", calories: 1680, fat: 45,
+                   protein: 195, carbs: 123, notch: 0.0
+
+
 oats = Ingredient.create! name: "Old Fashioned Oats", serving_amount: 0.5,
                   serving_name: "Cup", fat: 3, carbs: 27, protein: 5,
                   calories: 155
@@ -193,11 +202,6 @@ You have two options:
 "
 
 
-
-
-
-
-
 b1 = Recipe.create! name: "Protein Oats aka Proats!", collection: "Breakfast Lovers", category: "Breakfast", description: proats_desc
 b2 = Recipe.create! name: "Protein Pancakes", collection: "Breakfast Lovers", category: "Breakfast", description: pancakes_desc
 
@@ -224,9 +228,6 @@ Recipepart.create! recipe_id: d2.id, ingredient_id: peanutbutter.id, amount: 1
 
 Recipepart.create! recipe_id: l1.id, ingredient_id: lunch.id, amount: 1
 Recipepart.create! recipe_id: l2.id, ingredient_id: lunch.id, amount: 1
-# Recipepart.create! recipe_id: l1.id, ingredient_id: meat.id, amount: 1
-# Recipepart.create! recipe_id: l1.id, ingredient_id: rice.id, amount: 0.5
-# Recipepart.create! recipe_id: l1.id, ingredient_id: vegetable.id, amount: 0.5
 
 Recipepart.create! recipe_id: b1.id, ingredient_id: protein.id, amount: 1
 Recipepart.create! recipe_id: b1.id, ingredient_id: oats.id, amount: 1
@@ -237,12 +238,3 @@ Recipepart.create! recipe_id: b2.id, ingredient_id: syrup.id, amount: 1
 
 Recipepart.create! recipe_id: s1.id, ingredient_id: snack.id, amount: 1
 Recipepart.create! recipe_id: p1.id, ingredient_id: protein.id, amount: 1
-
-
-
-bentopi = User.create! username: "Bentopi", email: "bentopi@topi.com",
-                   password: "Bentopi", gender: "M", height: 69,
-                   weight: 164.0, age: 29, weight_rate: -1.5,
-                   workout_count: 4, workout_intensity: 0.05,
-                   workout_type: "L", calories: 1680, fat: 45,
-                   protein: 195, carbs: 123, notch: 0.0

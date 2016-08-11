@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#home'
+
+
   get 'about' => 'welcome#about', as: :about
   get 'coaching' => 'welcome#coaching', as: :coaching
 
@@ -26,12 +28,15 @@ Rails.application.routes.draw do
   delete 'mealplans/:id/meals/:meal_id' => 'mealplans#delete_meal', as: :delete_meal
 
 
-  get 'meal/:id' => 'meals#show_meal', as: :meal
-  get 'ingredient/:id' => 'meals#show_ingredient', as: :ingredient
-
-
+  get 'meal/:id' => 'food#show_meal', as: :meal
+  get 'ingredient/:id' => 'food#show_ingredient', as: :ingredient
+  get 'mealcenter' => 'food#mealcenter', as: :mealcenter
   get 'foodfinder' => 'food#finder', as: :food_finder
   post 'foodfinder' => 'food#search', as: :search_food
+  post 'favorites' => 'food#add_favorite', as: :add_favorite
+  get 'favorites' => 'food#favorites', as: :favorites
+  delete 'favorites/:id' => 'food#delete_favorite', as: :delete_favorite
+  get 'recipecollections' => 'food#recipe_collections', as: :recipe_collections
 
 
   get 'registration' => 'users#new', as: :new_user
@@ -39,6 +44,7 @@ Rails.application.routes.draw do
   get 'profile' => 'users#profile', as: :user_profile
   get 'profile/edit' => 'users#edit_profile', as: :edit_profile
   patch 'profile/edit' => 'users#update_profile'
+
 
   get 'sign_in' => 'sessions#new', as: :sign_in
   post 'sign_in' => 'sessions#create'

@@ -3,6 +3,11 @@ class Mealplan < ActiveRecord::Base
   has_many :meals
 
 
+
+  def quantity
+  end
+
+
   ## Must refactor this code ##
 
   def kcals

@@ -8,7 +8,7 @@
             <br>
 
             <p>
-                      <h3 class="workout-scheme">YOUR DAILY GOALS</h3><br>
+                      <h3 class="workout-scheme">YOUR NUTRITION GOALS</h3><br>
                       <h3><small> <%= @user.calories %> Calories<br>
                        <%= @user.protein %>g Protein <br>
                        <%= @user.carbs %>g Carbs <br>
@@ -32,10 +32,10 @@
     </div><!--service column-->
     <div class="row">
       <div class="col-xs-12 wow animated fadeIn" data-wow-delay="0.2s">
-        <%= link_to "Get New Macros", edit_macros_path, class: "btn, btn-lg btn-danger" %>
+        <%= link_to "Recalculate", edit_macros_path, class: "btn, btn-lg btn-danger" %>
       </div>
     </div>
-
+    <p></p>
   </div>
 
 </div>

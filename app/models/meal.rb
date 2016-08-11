@@ -2,6 +2,7 @@ class Meal < ActiveRecord::Base
   belongs_to :recipe
   has_many :recipes
 
+
   def kcals
    recipe_id = self.recipe_id
    recipe = Recipe.where id: recipe_id

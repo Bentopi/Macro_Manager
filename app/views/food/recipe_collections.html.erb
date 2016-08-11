@@ -1,0 +1,27 @@
+<div class="container">
+  <br>
+  <div class="wow animated fadeIn text-center" data-wow-delay="0.1s">
+    <h2 class="mealplan-title mealplan-title-bottom-padding">Recipe Collections</h2>
+  </div>
+  <br>
+
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-6 margin30 meals">
+        <div class="wow animated fadeIn" data-wow-delay="0.15s">
+          <% @recipes.each do |recipe| %>
+            <strong class="meal-title">
+            <%=recipe.name %>
+            </strong>
+            <span class="meal-body">
+              <br>
+          <%= number_to_human(recipe.kcals) %> kcals<br>
+          <%= number_to_human(recipe.proteins) %>g Protein<br>
+          <%= number_to_human(recipe.carbs) %>g Carbs<br>
+          <%= number_to_human(recipe.fats) %>g Fat<br></span>
+
+          <hr class="form-divider">
+            <% end %>
+        </div>
+      </div>
+    </div>
+</div>

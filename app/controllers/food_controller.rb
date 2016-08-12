@@ -110,11 +110,15 @@ class FoodController < ApplicationController
   end
 
   def show_meal
-  @meal = Meal.find_by id: params[:id]
+    @meal = Meal.find_by id: params[:id]
+  end
+
+  def show_recipe
+    @recipe = Recipe.find_by id: params[:id]
   end
 
   def show_ingredient
-  @ingredient = Ingredient.find_by id: params[:id]
+    @ingredient = Ingredient.find_by id: params[:id]
   end
 
 end

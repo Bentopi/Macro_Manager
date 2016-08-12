@@ -1,0 +1,52 @@
+<div class="container">
+<br>
+
+  <div class="row">
+    <div class="text-center">
+      <h2 class="mealplan-title"> <%= @recipe.name %></h2>
+    </div>
+  </div>
+
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 margin30">
+    <div class="service-box wow animated fadeIn" data-wow-delay="0.1s">
+        <h4>Ingredients</h4>
+        <br>
+        <% @recipe.recipeparts.each do |r| %>
+            <h5>
+            <%= pluralize(number_to_human(r.amount * r.ingredient.serving_amount), r.ingredient.serving_name)  %>
+            -
+            <%=r.ingredient.name%>
+          </h5>
+        <% end %>
+        Approx:
+        <%= number_to_human(@recipe.kcals ) %>kcal -
+        <%= number_to_human(@recipe.proteins ) %>P -
+        <%= number_to_human(@recipe.carbs ) %>C -
+        <%= number_to_human(@recipe.fats ) %>F
+        <p></p>
+    </div>
+  </div><!--service column-->
+</div>
+
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1 margin30">
+    <div class="wow animated fadeIn" data-wow-delay="0.2s">
+        <h3>Directions:</h3>
+      <span class="bigger-text"><%= simple_format(@recipe.description) %></span>
+    </div>
+  </div><!--service column-->
+</div>
+
+
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <%= link_to recipe_collections_path do %>
+        <div class="btn btn-success btn-block button-bottom-margin">
+          Back
+        </div>
+        <% end %>
+      </div>
+    </div>
+</div>

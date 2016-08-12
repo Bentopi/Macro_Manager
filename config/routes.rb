@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'favorites' => 'food#favorites', as: :favorites
   delete 'favorites/:id' => 'food#delete_favorite', as: :delete_favorite
   get 'recipecollections' => 'food#recipe_collections', as: :recipe_collections
+  get 'recipe/:id' => 'food#show_recipe', as: :recipe
 
 
   get 'registration' => 'users#new', as: :new_user

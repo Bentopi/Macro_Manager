@@ -1,23 +1,26 @@
 <div class="container">
   <br>
   <div class="wow animated fadeIn text-center" data-wow-delay="0.1s">
-    <h2 class="mealplan-title mealplan-title-bottom-padding">Recipe Collections</h2>
+    <h2 class="mealplan-title mealplan-title-bottom-padding">Recipe Collections <br> <small>(More coming soon!)</small></h2>
   </div>
   <br>
 
     <div class="row">
+      <h2 class="text-center wow animated fadeIn" data-wow-delay="0.2s">Breakfast Lovers!</h2>
       <div class="col-sm-6 col-sm-offset-6 margin30 meals">
-        <div class="wow animated fadeIn" data-wow-delay="0.15s">
+        <div class="wow animated fadeIn" data-wow-delay="0.3s">
           <% @recipes.each do |recipe| %>
             <strong class="meal-title">
-            <%=recipe.name %>
+              <%= link_to recipe.name, recipe_path(id:recipe.id) %> <br>
             </strong>
             <span class="meal-body">
-              <br>
-          <%= number_to_human(recipe.kcals) %> kcals<br>
-          <%= number_to_human(recipe.proteins) %>g Protein<br>
-          <%= number_to_human(recipe.carbs) %>g Carbs<br>
-          <%= number_to_human(recipe.fats) %>g Fat<br></span>
+              <% recipe.recipeparts.each do |part| %>
+            <%= number_to_human(part.amount * part.ingredient.serving_amount) %>  <%= part.ingredient.serving_name %> <%= part.ingredient.name %> <br>
+              <% end %>
+          <em> <%= number_to_human(recipe.kcals) %> kcals -
+          <%= number_to_human(recipe.proteins).to_i %>g P -
+          <%= number_to_human(recipe.carbs).to_i %>g C -
+          <%= number_to_human(recipe.fats).to_i %>g F </em></span>
 
           <hr class="form-divider">
             <% end %>

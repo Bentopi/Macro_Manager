@@ -10,21 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811204735) do
+ActiveRecord::Schema.define(version: 20160907171915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "favorites", force: :cascade do |t|
-    t.string  "name"
-    t.string  "brand"
-    t.float   "calories"
-    t.float   "protein"
-    t.float   "carbs"
-    t.float   "fat"
-    t.string  "serving"
-    t.integer "user_id"
-  end
 
   create_table "ingredients", force: :cascade do |t|
     t.string   "serving_name"
@@ -69,20 +58,16 @@ ActiveRecord::Schema.define(version: 20160811204735) do
     t.datetime "updated_at",  null: false
     t.text     "description"
     t.string   "collection"
-    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "username"
-    t.string   "gender"
-    t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "height"
-    t.float    "weight"
     t.integer  "age"
-    t.float    "weight_rate"
+    t.integer  "height"
+    t.string   "gender"
+    t.float    "weight"
+    t.string   "password_digest"
     t.integer  "workout_count"
     t.float    "workout_intensity"
     t.string   "workout_type",      default: "L"
@@ -90,7 +75,10 @@ ActiveRecord::Schema.define(version: 20160811204735) do
     t.integer  "protein"
     t.integer  "carbs"
     t.integer  "fat"
-    t.float    "notch",             default: 0.0
+    t.integer  "notch",             default: 1
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "weight_rate"
   end
 
 end

@@ -20,19 +20,26 @@
             <div class="service-box wow animated fadeIn" data-wow-delay="0.15s">
                 <i class="fa fa-cutlery" aria-hidden="true"></i>
                 <p>
-                  <h3>Your Nutrition Goals</h3>
-                  <h4><%= @calories.round() %> Calories
-                  <h4> <%= @protein %>g Protein
-                  <h4> <%= @carbs %>g Carbs
-                  <h4> <%= @fat %>g Fat
+                  <h2>Daily Nutrition Goal:</h2>
+                  <h3><%= @calories.round() %> Calories
+                  <h3> <%= @protein %>g Protein
+                  <h3> <%= @carbs %>g Carbs
+                  <h3> <%= @fat %>g Fat </h3>
+                  <hr>
                 </p>
-                <%=link_to new_user_path do %>
-                <div class="btn btn-lg btn-block btn-success">
-                  You should sign up!
-                </div>
-                <% end %>
-  <p>
-  </p>
+                  <h2>Simplified:</h2>
+                  <h3> <%= @protein / 25 %> Protein Portions
+                  <h3> <%= @carbs / 25 %> Carb Portions
+                  <p></p>
+                  <%= link_to about_path do %>
+                  <div class="btn btn-danger">
+                    How do I do this?
+                  </div>
+                  <% end %>
+                  <p>
+
+                  </p>
+
             </div>
         </div>
     </div>

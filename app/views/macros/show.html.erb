@@ -5,38 +5,48 @@
         <div class="service-box wow animated fadeIn" data-wow-delay="0.1s">
             <i class="fa fa-cutlery" aria-hidden="true"></i>
             <% if @user.protein != nil %>
-            <br>
-
-            <p>
-                      <h3 class="workout-scheme">YOUR NUTRITION GOALS</h3><br>
-                      <h3><small> <%= @user.calories %> Calories<br>
-                       <%= @user.protein %>g Protein <br>
-                       <%= @user.carbs %>g Carbs <br>
-                       <%= @user.fat %>g Fat</h3></small>
-
-
-                    <% else %>
-
-                      <div class="text-center">
-                        <h2>
-                          You don't have Macros yet<br> <br>
-                          Let's get you some!
-                        </h2>
-                        <br>
-                        <%= link_to "Okay!", edit_macros_path, class: "btn, btn-lg btn-primary" %>
-                      </div>
-
-                    <% end %>
+              <br>
+              <p>
+              <h2 class="workout-scheme">Daily Nutrition Goal:</h2><br>
+              <h3> <%= @user.calories %> Calories<br>
+              <h3> <%= @user.protein %>g Protein <br>
+              <h3> <%= @user.carbs %>g Carbs <br>
+              <h3> <%= @user.fat %>g Fat</h3>
+               <hr>
               </p>
+               <h2>Simplified:</h2>
+               <h3> <%= @user.protein / 25 %> Protein Portions
+               <h3> <%= @user.carbs / 25 %> Carb Portions
+                 <p></p>
+               <%= link_to about_path do %>
+               <div class="btn btn-danger">
+                 How do I do this?
+               </div>
+               <% end %>
+
+                <% else %>
+
+                  <div class="text-center">
+                    <h2>
+                      You don't have Macros yet<br> <br>
+                      Let's get you some!
+                    </h2>
+                    <br>
+                    <%= link_to "Okay!", edit_macros_path, class: "btn, btn-lg btn-primary" %>
+                  </div>
+
+                <% end %>
         </div>
-    </div><!--service column-->
-    <div class="row">
-      <div class="col-xs-12 wow animated fadeIn" data-wow-delay="0.2s">
-        <%= link_to "Recalculate", edit_macros_path, class: "btn, btn-lg btn-danger" %>
       </div>
     </div>
-    <p></p>
-  </div>
+    <div class="col-xs-12 text-center">
+        <%= link_to "Recalculate", edit_macros_path, class: "btn, btn-lg btn-danger" %>
+            <p></p>
+    </div>
+
+    </div>
+
+
 
 </div>
 

@@ -8,7 +8,7 @@ class MacroParser
     @gender = @user.gender
     @height = @user.height
     @weight = @user.weight
-    @weight_rate = @user.weight_rate
+    @weight_rate = @user.weight_rate.to_s
     @workout_count = @user.workout_count
     @workout_type = @user.workout_type
     @workout_intensity = @user.workout_intensity

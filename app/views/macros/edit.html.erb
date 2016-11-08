@@ -10,8 +10,8 @@
                   <h3>Weight Goal</h3>
               </div>
           <%= f.select :weight_rate, options_for_select([
-            ["Maintain Weight" , 1], ["Lose Weight" , 2],
-            ["Gain Weight", 3]], selected = @user.weight_rate), {}, {class: "form-control"} %>
+            ["Maintain Weight" , "Maintain"], ["Lose Weight" , "Lose"],
+            ["Gain Weight", "Gain"]], selected = @user.weight_rate), {}, {class: "form-control"} %>
         </div>
       </div>
     </div>

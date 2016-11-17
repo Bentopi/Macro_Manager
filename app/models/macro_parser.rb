@@ -68,7 +68,6 @@ class MacroParser
           weight_rate_factor = 0.65
       end
 
-
       if @workout_count && @workout_count == 0
         p_high -= 0.3
       elsif @workout_count && @workout_count > 0

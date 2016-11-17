@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907171915) do
+ActiveRecord::Schema.define(version: 20161117202432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 20160907171915) do
     t.integer  "protein"
     t.integer  "fat"
     t.integer  "carbs"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
     t.string   "name"
     t.float    "serving_amount"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "mealplans", force: :cascade do |t|
@@ -37,37 +37,38 @@ ActiveRecord::Schema.define(version: 20160907171915) do
   create_table "meals", force: :cascade do |t|
     t.integer  "mealplan_id"
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.integer  "recipe_id"
     t.float    "quantity"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "recipeparts", force: :cascade do |t|
     t.integer  "ingredient_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
     t.integer  "recipe_id"
     t.float    "amount"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string   "category"
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.text     "description"
     t.string   "collection"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "username"
+    t.string   "password_digest"
     t.integer  "age"
     t.integer  "height"
     t.string   "gender"
     t.float    "weight"
-    t.string   "password_digest"
+    t.string   "weight_rate"
     t.integer  "workout_count"
     t.float    "workout_intensity"
     t.string   "workout_type",      default: "L"
@@ -78,7 +79,6 @@ ActiveRecord::Schema.define(version: 20160907171915) do
     t.integer  "notch",             default: 1
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-    t.string   "weight_rate"
   end
 
 end

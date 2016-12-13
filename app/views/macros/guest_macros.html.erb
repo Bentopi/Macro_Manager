@@ -28,8 +28,8 @@
                   <hr>
                 </p>
                   <h2>Simplified:</h2>
-                  <h3> <%= @protein / 25 %> Protein Portions
-                  <h3> <%= @carbs / 25 %> Carb Portions
+                  <h3> <%= ((@protein % 25) <= 13) ? (@protein / 25) : (@protein / 25) -1 %> Protein Portions
+                  <h3> <%= ((@carbs % 25) <= 13) ? (@carbs / 25) : (@carbs / 25) -1 %> Carb Portions
                   <p></p>
                   <%= link_to about_path do %>
                   <div class="btn btn-danger">

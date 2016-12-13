@@ -91,7 +91,7 @@ class MacrosController < ApplicationController
     @user.calories = macroparser.calories
 
     if @user.save
-      redirect_to macros_path, notice: "Great! Here's your results! Next Stop is the Meal Center!"
+      redirect_to macros_path, notice: "Here's your results:"
     else
       render :edit
     end

@@ -54,17 +54,17 @@ class MacroParser
         when @weight_rate == "Maintain"
           @calories = tdee
           p_high -= 0.15
-          f_high -= 0.06
+          f_high += 0.02
           weight_rate_factor = 0
         when @weight_rate == "Lose"
           @calories = tdee * 0.75
           p_high += 0.02
-          f_high -= 0.18
+          f_high -= 0.10
           weight_rate_factor = -1.5
         when @weight_rate == "Gain"
           @calories = tdee * 1.2
           p_high -= 0.21
-          f_high -= 0.02
+          f_high += 0.06
           weight_rate_factor = 0.65
       end
 

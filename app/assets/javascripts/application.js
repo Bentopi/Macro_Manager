@@ -24,5 +24,6 @@
 //= require js/revolution-custom
 //= require js/waypoints.min
 //= require js/wow.min
+//= require about
 
 //= require_tree .

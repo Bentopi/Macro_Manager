@@ -4,9 +4,9 @@ class MealplansController < ApplicationController
 
   before_action do
     if @current_user.age == nil
-      redirect_to edit_profile_path, alert: "We're gonna need this info if you want a Mealplan!"
+      redirect_to edit_profile_path, alert: "We're gonna need this info first!"
     elsif @current_user.protein == nil
-      redirect_to edit_macros_path, alert: "We need to get Macros first if you want a Mealplan!"
+      redirect_to edit_macros_path, alert: "We're gonna need this info first!"
     end
   end
 

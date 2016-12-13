@@ -33,7 +33,7 @@ class MacrosController < ApplicationController
 
   def notch_up
     @user = User.find_by id: session[:user_id]
-    @user.notch += 0.1
+    @user.notch += 1
     @user.save
 
     macroparser = MacroParser.new(@user.id)
@@ -54,7 +54,7 @@ class MacrosController < ApplicationController
 
   def notch_down
     @user = User.find_by id: session[:user_id]
-    @user.notch -= 0.1
+    @user.notch -= 1
     @user.save
 
     macroparser = MacroParser.new(@user.id)

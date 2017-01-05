@@ -16,7 +16,10 @@ gem 'bcrypt'
 gem 'therubyracer'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'rspec-rails'
   gem 'byebug', platform: :mri
+  gem 'capybara'
 end
 
 group :development do

@@ -27,7 +27,7 @@ class MacroParser
     end
 
     if @workout_count && @workout_intensity
-      tdee_coef = ((@workout_count * @workout_intensity).to_f + 1.2) + (@notch/2)
+      tdee_coef = (@workout_count * @workout_intensity).to_f + 1.2
     end
 
     tdee = (bmr * tdee_coef)
@@ -82,9 +82,11 @@ class MacroParser
         end
       end
 
-      @protein = ((@weight * p_high)  -  ((p_high - p_low)/2) * (weight_rate_factor + 1.5)).to_i
+      @calories = @calories.round(-1)
 
-      @fat = ((@weight * f_high)  -  ((f_high - f_low)/2) * (weight_rate_factor + 1.5)).to_i
+      @protein = ((@weight * p_high) - ((p_high - p_low)/2) * (weight_rate_factor + 1.5)).to_i
+
+      @fat = ((@weight * f_high) - ((f_high - f_low)/2) * (weight_rate_factor + 1.5)).to_i
 
       @carbs = ((@calories - ((@protein * 4) + (@fat * 9)))/4).to_i
 

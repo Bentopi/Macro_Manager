@@ -11,9 +11,9 @@
     bmr, age, tdee_coef, weight_rate_factor = 0, 0, 0, 0
 
     if params[:gender] == "M"
-      bmr = ((9.99 * params[:weight].to_f) + (6.25 * params[:height].to_f) - (4.92 * age.to_f) + 5).to_i
+      bmr = ((9.99 * params[:weight].to_f) + (6.25 * params[:height].to_f) - (4.92 * params[:age].to_f) + 5).to_i
     elsif params[:gender] == "F"
-      bmr = ((9.99 * params[:weight].to_f) + (6.25 * params[:height].to_f) - (4.92 * age.to_f) - 161).to_i
+      bmr = ((9.99 * params[:weight].to_f) + (6.25 * params[:height].to_f) - (4.92 * age[:age].to_f) - 161).to_i
     end
 
     if params[:workout_count] && params[:workout_intensity]
@@ -28,7 +28,7 @@
      end
 
     case
-      when age < 20
+    when age < 20
         p_low = 0.7
         p_high = 1.0
         f_low = 0.3
@@ -76,6 +76,8 @@
             f_high -= 0.02
         end
       end
+
+      @calories = @calories.round(-1)
 
       @protein = ((params[:weight].to_f * p_high)  -  ((p_high - p_low)/2) * (weight_rate_factor + 1.5)).to_i
 

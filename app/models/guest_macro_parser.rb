@@ -10,11 +10,16 @@
 
     bmr, age, tdee_coef, weight_rate_factor = 0, 0, 0, 0
 
-    if params[:gender] == "M"
-      bmr = ((9.99 * params[:weight].to_f) + (6.25 * params[:height].to_f) - (4.92 * params[:age].to_f) + 5).to_i
-    elsif params[:gender] == "F"
-      bmr = ((9.99 * params[:weight].to_f) + (6.25 * params[:height].to_f) - (4.92 * age[:age].to_f) - 161).to_i
+    def get_bmr
+      weight_coef = (9.99 * params[:weight].to_f)
+      height_coef = (6.25 * params[:height].to_f)
+      age_coef = (4.92 * params[:age].to_f)
+      gender_const = params[:gender] == "M" ? (5.0) : (-161.0)
+
+      return (weight_coef + height_coef - age_coef + gender_const).to_f
     end
+
+    bmr = get_bmr
 
     if params[:workout_count] && params[:workout_intensity]
       tdee_coef = (params[:workout_count].to_f * params[:workout_intensity].to_f) + 1.2
@@ -25,7 +30,7 @@
 
     if params[:age]
        age = params[:age].to_i
-     end
+    end
 
     case
     when age < 20
